@@ -6,3 +6,5 @@ export {default as Tasks} from './Tasks';
 export {default as NewTask} from './NewTask';
 export {default as Creator} from './Creator';
 export {default as Button} from './Button';
+export {default as Notifications} from './Notifications';
+export {default as Notification} from './Notification';

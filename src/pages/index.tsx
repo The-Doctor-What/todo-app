@@ -1,4 +1,4 @@
-import {Creator, Layout, Tasks} from "@/components";
+import {Creator, Layout, Notifications, Tasks} from "@/components";
 import {Inter} from 'next/font/google'
 import {useState} from "react";
 
@@ -14,6 +14,7 @@ export default function HomePage() {
                 <h1 className="font-bold text-2xl">{process.env.NEXT_PUBLIC_TITLE || `Web Site`}</h1>
             </section>
             <Tasks creator={() => setShowCreator(true)}/>
+            <Notifications/>
             {showCreator && (<Creator close={() => setShowCreator(false)}/>)}
         </Layout>
     )

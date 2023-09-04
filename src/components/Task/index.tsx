@@ -1,5 +1,6 @@
 import {Icon} from "@/components";
 import {useState} from "react";
+import {sendNotification} from "@/utils/notifications";
 
 export type TaskTypes = {
     task: any,
@@ -39,7 +40,7 @@ export default function TaskComponent({task, preview}: TaskTypes) {
         const tasks = JSON.parse(response);
 
         const updatedTasks = tasks.filter((task: { title: any; }) => task.title !== _task.title);
-
+        sendNotification("success", "Task deleted")
         localStorage.setItem("tasks", JSON.stringify(updatedTasks));
     }
 

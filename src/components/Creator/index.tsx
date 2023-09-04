@@ -1,5 +1,6 @@
 import {Button, Icon, Task} from "@/components";
 import {useState} from "react";
+import {sendNotification} from "@/utils/notifications";
 
 export type CreatorTypes = {
     close: any
@@ -29,14 +30,10 @@ export default function Creator({close}: CreatorTypes) {
         const response = localStorage.getItem("tasks")
         if (!response) localStorage.setItem("tasks", JSON.stringify([]));
         const tasks = response ? JSON.parse(response) : [];
-        for (const _task of tasks) {
-            if (task.title == _task.title) {
-                return alert("Error")
-            }
-        }
+        for (const _task of tasks) if (task.title == _task.title) return sendNotification("error", "This task has already been added")
         tasks.push(task)
         localStorage.setItem("tasks", JSON.stringify(tasks));
-        alert("Success")
+        sendNotification("success", "Task added")
         close()
     }
 
