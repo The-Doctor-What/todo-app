@@ -3,7 +3,7 @@ import {Icon} from "@/components";
 export type ButtonsTypes = {
     icon?: string,
     iconGroup?: string,
-    execute: any,
+    execute?: any,
     children: any,
     className?: any
     type?: any

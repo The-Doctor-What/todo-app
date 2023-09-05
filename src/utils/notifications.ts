@@ -4,9 +4,11 @@ export function sendNotification(type: any, text: any) {
         type,
         text
     }
-    const response = localStorage.getItem("notifications")
-    if (!response) localStorage.setItem("notifications", JSON.stringify([]));
+
+    const response = localStorage.getItem("notifications");
     const notifications = response ? JSON.parse(response) : [];
-    notifications.push(notification)
-    localStorage.setItem("notifications", JSON.stringify(notifications));
+
+    const updatedNotifications = [notification, ...notifications].slice(0, 8);
+
+    localStorage.setItem("notifications", JSON.stringify(updatedNotifications));
 }

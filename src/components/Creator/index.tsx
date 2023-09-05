@@ -27,19 +27,20 @@ export default function Creator({close}: CreatorTypes) {
                 group: iconGroup
             }
         }
+        if (task.title.length >= 30) return sendNotification("error", "The title is too long")
         const response = localStorage.getItem("tasks")
         if (!response) localStorage.setItem("tasks", JSON.stringify([]));
         const tasks = response ? JSON.parse(response) : [];
         for (const _task of tasks) if (task.title == _task.title) return sendNotification("error", "This task has already been added")
         tasks.push(task)
         localStorage.setItem("tasks", JSON.stringify(tasks));
-        sendNotification("success", "Task added")
+        sendNotification("success", `Task "${task.title}" added`)
         close()
     }
 
     return (
         <section className="absolute w-full h-full flex flex-col items-center justify-center z-10 bg-black/25 cursor-pointer" onClick={close}>
-            <form className="bg-zinc-900 p-5 rounded flex flex-col gap-5 items-center cursor-auto" onClick={(e) => e.stopPropagation()}>
+            <form className="bg-zinc-900 p-5 rounded flex flex-col gap-5 items-center cursor-auto" onClick={(e) => e.stopPropagation()} onSubmit={(e: any) => create(e)}>
                 <div className="absolute w-96 flex justify-end ">
                     <button className="text-xl" onClick={close}>
                         <Icon name="xmark"/>
@@ -54,7 +55,7 @@ export default function Creator({close}: CreatorTypes) {
                 </div>
                 <div>
                     <p>Custom Icon</p>
-                    <input type="text" className={inputClass} onChange={(e: any) => setIconName(e.target.value)} required placeholder="list-check"/>
+                    <input type="text" className={inputClass} onChange={(e: any) => setIconName(e.target.value)} placeholder="list-check"/>
                 </div>
                 <div className="w-full">
                     <p>Custom Icon Group</p>
@@ -68,7 +69,7 @@ export default function Creator({close}: CreatorTypes) {
                     <p>Preview</p>
                     <Task preview={true} task={{title: taskName, mode: false, customIcon: {name: iconName, group: iconGroup}}}/>
                 </div>
-                <Button execute={(e: any) => create(e)} icon="plus" type="submit">Create</Button>
+                <Button icon="plus" type="submit">Create</Button>
             </form>
         </section>
     )

@@ -14,7 +14,7 @@ export default function Notification({notification}: NotificationTypes) {
     }
 
     return (
-        <div className="w-80 h-10 bg-zinc-800 rounded flex flex-row items-center justify-between p-3">
+        <div className="w-80 bg-zinc-800 rounded flex flex-row items-center justify-between p-3 text-center">
             <div>
                 {notification.type == "error" && (<Icon name="triangle-exclamation" className="text-red-400"/>)}
                 {notification.type == "success" && (<Icon name="thumbs-up" className="text-green-400"/>)}

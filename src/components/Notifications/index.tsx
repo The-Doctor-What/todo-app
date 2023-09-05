@@ -12,7 +12,7 @@ export default function NotificationsBar() {
     });
 
     return (
-        <section className="flex flex-col gap-3 absolute right-5 top-5">
+        <section className="flex flex-col gap-3 absolute right-5 top-5 z-20">
             {notifications ? notifications.map((notification: any) => <Notification notification={notification}/>) : ""}
         </section>
     )
